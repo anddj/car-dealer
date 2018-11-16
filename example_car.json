@@ -1,0 +1,11 @@
+{
+  "vin": "1M8GDM9AXKP042788",
+  "make": "honda",
+  "model": "civic",
+  "year": 2008,
+  "sold": true,
+  "buyer_info": {
+    "name": "John Doe",
+    "address": "Washington DC"
+  }
+}
