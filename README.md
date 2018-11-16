@@ -75,7 +75,7 @@ curl https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id>
 
 ```bash
 # Replace the <id> part with a real id from your cars table
-curl -X PUT https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id> --data @example_car.json
+curl -X PUT -H "Content-Type: application/json" https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id> --data @example_car.json
 ```
 
 ### Delete a Car
@@ -84,3 +84,10 @@ curl -X PUT https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id>
 # Replace the <id> part with a real id from your cars table
 curl -X DELETE https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id>
 ```
+
+### Mark Car as sold
+```bash
+# Replace the <id> part with a real id from your cars table
+curl -X PUT -H "Content-Type: application/json" https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id> --data '{"sold": true, "buyer_info": {"name": "buyer one", "address": "Washington DC"}}'
+```
+

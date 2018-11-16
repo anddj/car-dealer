@@ -28,9 +28,8 @@ def update(event, context):
             setattr(found_car, attr, data[attr])
             car_changed = True
     # save date of buying
-    if 'sold' in data and data['sold'] == True \
-            and not getattr(found_car, 'sold', None):
-                found_car.sold_date = datetime.now()
+    if 'sold' in data and data['sold'] == True:
+        found_car.sold_date = datetime.now()
     if 'buyer_info' in data:
         data['buyer_info'] = data['buyer_info']
         setattr(found_car, 'buyer_info', data['buyer_info'])

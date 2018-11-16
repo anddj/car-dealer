@@ -25,8 +25,8 @@ class VinIndex(GlobalSecondaryIndex):
     vin = UnicodeAttribute(hash_key=True)
 
 class BuyerInfoMap(MapAttribute):
-    name = UnicodeAttribute(null=False)
-    address = UnicodeAttribute(null=True)
+    name = UnicodeAttribute()
+    address = UnicodeAttribute()
 
 class CarModel(Model):
     class Meta:
@@ -56,7 +56,13 @@ class CarModel(Model):
     def __iter__(self):
         for name, attr in self.get_attributes().items():
             val = getattr(self, name, None)
-            if val is not None:
-                yield name, attr.serialize(val)
+            if isinstance(attr, MapAttribute):
+                if val is not None:
+                    yield name, val.as_dict()
+                else:
+                    yield name, None
             else:
-                yield name, None
+                if val is not None:
+                    yield name, attr.serialize(val)
+                else:
+                    yield name, None
