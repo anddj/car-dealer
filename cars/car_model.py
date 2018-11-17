@@ -63,6 +63,11 @@ class CarModel(Model):
                     yield name, None
             else:
                 if val is not None:
-                    yield name, attr.serialize(val)
+                    if isinstance(val, int):
+                        # Until https://github.com/pynamodb/PynamoDB/issues/556
+                        # is resolved
+                        yield name, val
+                    else:
+                        yield name, attr.serialize(val)
                 else:
                     yield name, None
