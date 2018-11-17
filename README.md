@@ -91,3 +91,8 @@ curl -X DELETE https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<
 curl -X PUT -H "Content-Type: application/json" https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev/cars/<id> --data '{"sold": true, "buyer_info": {"name": "buyer one", "address": "Washington DC"}}'
 ```
 
+### Run tests
+```bash
+python tests/test_api.py
+```
+
