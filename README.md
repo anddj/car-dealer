@@ -93,6 +93,7 @@ curl -X PUT -H "Content-Type: application/json" https://XXXXXXX.execute-api.eu-c
 
 ### Run tests
 ```bash
+pip install -r requirements-dev.txt
 export CAR_DEALER_URL=https://XXXXXXX.execute-api.eu-central-1.amazonaws.com/dev
 python tests/test_api.py
 ```

@@ -1,3 +1,5 @@
+"""PynamoDB data model"""
+
 import os
 from datetime import datetime
 
@@ -11,9 +13,10 @@ class VinIndex(GlobalSecondaryIndex):
     """
     This class represents a global secondary index
     """
-    class Meta:
-        # index_name is optional, but can be provided to override the default name
-        #index_name = 'vin_index'
+    class Meta: #pylint: disable=too-few-public-methods
+        """Meta"""
+        # index_name is optional, but can be provided to override
+        # the default name
         read_capacity_units = 1
         write_capacity_units = 1
         # All attributes are projected
@@ -25,11 +28,14 @@ class VinIndex(GlobalSecondaryIndex):
     vin = UnicodeAttribute(hash_key=True)
 
 class BuyerInfoMap(MapAttribute):
+    """Buyer info substructure"""
     name = UnicodeAttribute()
     address = UnicodeAttribute()
 
 class CarModel(Model):
-    class Meta:
+    """Car model"""
+    class Meta: #pylint: disable=too-few-public-methods
+        """Meta"""
         table_name = os.environ['DYNAMODB_TABLE']
         if 'ENV' in os.environ:
             host = 'http://localhost:8000'
@@ -49,6 +55,7 @@ class CarModel(Model):
     created_date = UTCDateTimeAttribute(null=False, default=datetime.now())
     updated_date = UTCDateTimeAttribute(null=False, default=datetime.now())
 
+    # pylint: disable=arguments-differ
     def save(self, conditional_operator=None, **expected_values):
         self.updated_date = datetime.now()
         super(CarModel, self).save()
